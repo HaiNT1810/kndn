@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "baseUrl": "./app/",
+    "paths": {
+      "@datas": ["data"],
+      "@screens": ["screens"],
+      "@containers": ["containers"],
+      "@components": ["components"],
+      "@navigation": ["navigation"],
+      "@images": ["images"],
+      "@themes": ["themes"],
+      "@services": ["services"],
+      "@utils": ["utils"],
+      "@redux": ["redux"],
+      "@app/*": ["*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
