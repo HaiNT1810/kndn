@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
-import SplashScreen from 'react-native-splash-screen';
 
 import { createStackNavigator } from '@react-navigation/stack';
 //import messaging from '@react-native-firebase/messaging';
@@ -27,8 +26,6 @@ const RootContainerScreen = () => {
   const dataApp = useSelector((state) => state.global.dataApp);
 
   const [netStatus, setNet] = useState(true);
-
-  SplashScreen.hide();
 
   useEffect(() => {
     // Subscribe to network state updates

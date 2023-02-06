@@ -91,7 +91,7 @@ const Comment_Modal = (props) => {
   return (
     <Portal>
       <Modalize
-        scrollViewProps={{ showsVerticalScrollIndicator: false }}
+        // scrollViewProps={{ showsVerticalScrollIndicator: false }}
         ref={modalizeRef}
         contentRef={contentRef}
         HeaderComponent={() => (
@@ -147,27 +147,25 @@ const Comment_Modal = (props) => {
         )}
         modalHeight={modalHeight ? modalHeight : 400}
         snapPoint={snapPoint || 400}
-      >
-        {/* Render content comment */}
-        <SafeAreaView style={{ flex: 1 }}>
-          <FlatList
-            data={data?.data ? data?.data : []}
-            style={{ flex: 1, paddingHorizontal: 10 }}
-            renderItem={({ item, index }) => {
+        flatListProps={{
+          showsVerticalScrollIndicator: true,
+          data: data?.data ? data?.data : [],
+          style: { flex: 1, paddingHorizontal: 10 },
+          renderItem: ({ item, index }) => {
               return <RenderRootComment cmt={item} key={index} _key={index} callbackParent={callbackReplyFor} />;
-            }}
-            keyExtractor={keyExt}
-            ListEmptyComponent={() => (
+          },
+          keyExtractor: keyExt,
+          ListEmptyComponent: () => (
               <Text style={{ color: Colors.grey, textAlign: 'center', marginTop: 10 }}>Hãy là người đầu tiên để lại bình luận!</Text>
-            )}
-            onEndReached={() => {
+          ),
+          onEndReached: () => {
               if (data?.data.length < data?.count)
-                setFooterLoad(true);
-            }}
-            onEndReachedThreshold={0.8}
-            ListFooterComponent={data?.data.length < data?.count && footerLoad ? <ActivityIndicator size="large" color="#fb8c00" style={{ flex: 1, justifyContent: 'center' }} /> : <></>}
-          />
-        </SafeAreaView>
+                  setFooterLoad(true);
+          },
+          onEndReachedThreshold: 0.8,
+          ListFooterComponent: data?.data.length < data?.count && footerLoad ? <ActivityIndicator size="large" color="#fb8c00" style={{ flex: 1, justifyContent: 'center' }} /> : <></>
+      }}
+      >
       </Modalize>
     </Portal >
   );

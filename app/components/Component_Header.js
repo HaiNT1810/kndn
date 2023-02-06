@@ -8,6 +8,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5Pro';
 import LinearGradient from 'react-native-linear-gradient';
 
+//Header of the blocks in homepage
 const Component_Header = (props) => {
   let { headerText, lineColor, textIcon, seeMore } = props;
   headerText = headerText || "";
