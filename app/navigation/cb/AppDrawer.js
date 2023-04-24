@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Divider } from 'react-native-elements';
 import messaging from '@react-native-firebase/messaging';
 
-import { CBHomeScreen, Enterprise_List } from '@app/screens/cb';
+import { CBHomeScreen, Enterprise_List, Enterprise_Info, Enterprise_Info_Edit } from '@app/screens/cb';
 import { ChangePassScreen } from '@app/screens/home';
 
 import { DrawerMenuHeader, DrawerMenuItem, DrawerMenuChildrenItem } from '@app/components/tdcommon';
@@ -38,6 +38,8 @@ const Drawer_ = () => {
       <Drawer.Screen name="CBHomeScreen" component={CBHomeScreen} />
       <Drawer.Screen name="Enterprise_List" component={Enterprise_List} />
       <Drawer.Screen name="ChangePassScreen" component={ChangePassScreen} />
+      <Drawer.Screen name="Enterprise_Info" component={Enterprise_Info} />
+      <Drawer.Screen name="Enterprise_Info_Edit" component={Enterprise_Info_Edit} />
     </Drawer.Navigator>
   );
 };
@@ -123,7 +125,7 @@ const SideBar = (props) => {
           />
           <Divider width={0.5} color="#E0E0E0" />
           <DrawerMenuItem
-            itemKey={'QLDN'}
+            itemKey={'dn'}
             selectKey={selectKey}
             setSelectKey={setSelectKey}
             navigate={'Enterprise_List'}

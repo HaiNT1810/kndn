@@ -129,7 +129,7 @@ const Enterprise_List = (props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.TD_Background }}>
-      <TD_Header checkStack {...props} title="Quản lý doanh nghiệp"
+      <TD_Header checkrightComponent {...props} title="Quản lý doanh nghiệp"
         RightComponent={() => (<TD_HeaderRight_Icon showSearch={true} showDots={true} funcSearch={funcSearch} funcMore={funcMore} />)} />
       {/* Search & filter */}
       <View style={styles.SearchNMore}>
@@ -220,7 +220,7 @@ const RenderItem = (props) => {
     <Animated.View animation={''} style={{ left: state }}>
       <View style={styles.item}>
         <Text style={styles.badge}>{numberOrder}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("DBSEnterprise_DetailScreen", { id: item.ID })}>
+        <TouchableOpacity onPress={() => navigation.navigate("Enterprise_Info", { id: item.ID })}>
           <Flex>
             <Flex.Item><Image
               resizeMode={'contain'}

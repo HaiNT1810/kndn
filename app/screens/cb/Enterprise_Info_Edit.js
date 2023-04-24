@@ -5,25 +5,23 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
-  ScrollView,
+  Text,
 } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { Colors } from '@app/themes';
 import { TD_Header } from '@app/components';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5Pro';
+import { ScrollView } from 'react-native';
+import { Image } from 'react-native';
 import { ItemDateInput, TDDetailLegend, TDDetailText, TDTextInputNew } from '@app/components/tdcommon';
 import { BASE_URL, enterpriseData } from '@app/data';
 import moment from 'moment';
 import ActionButton from 'react-native-action-button';
 import { Avatar, CheckBox } from 'react-native-elements';
 import { useFormik } from 'formik';
-import { showMessage } from 'react-native-flash-message';
-import { useSelector } from 'react-redux';
 
-const DNEditInfo = (props) => {
+const Enterprise_Info_Edit = (props) => {
   const route = useRoute();
-  const navigation = useNavigation();
-  const accessToken = useSelector((state) => state.global.accessToken);
   const dataRoute = route?.params ?? {
     id: 0,
     checkEdit: {
@@ -75,7 +73,9 @@ const DNEditInfo = (props) => {
             showMessage({
               type: 'success',
               message: 'Thành công!',
+              //description: 'Cập nhật thành công!',
             });
+            handleReset();
             setButtonLoading(false);
             if (dataRoute?.id > 0) {
               navigation.goBack();
@@ -89,6 +89,7 @@ const DNEditInfo = (props) => {
           }
           setButtonLoading(false);
         } catch (error) {
+          console.log(error);
           setButtonLoading(false);
         }
       }
@@ -202,7 +203,7 @@ const DNEditInfo = (props) => {
   );
 };
 
-export default DNEditInfo;
+export default Enterprise_Info_Edit;
 const styles = StyleSheet.create({
   newsTitle: { paddingTop: 10, fontSize: 18, fontWeight: 'bold' },
   itemImage: { width: '100%', height: 200, marginTop: 10, marginBottom: 2, marginRight: 10, borderRadius: 5 },
