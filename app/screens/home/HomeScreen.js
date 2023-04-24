@@ -33,7 +33,7 @@ const Main_Screen = (props) => {
   const dispatch = useDispatch();
   const dataService = useSelector((state) => state.global.dataService);
   const user = useSelector((state) => state.global.user);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const [data, setData] = useState([]);
   const [dataChart, setDataChart] = useState([]);
   const [refreshing, setRefreshing] = useState(false);

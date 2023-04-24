@@ -15,7 +15,7 @@ import { DBSBusiness_FilterScreen } from '../screens/dbs';
 import { DrawerMenuHeader, DrawerMenuItem, DrawerMenuChildrenItem } from '../components/tdcommon';
 import { Styles } from '@themes';
 import * as actions from '../redux/global/Actions';
-import { requestPOST } from '@app/services/Api';
+import { requestPOST } from '@app/services';
 import { BASE_URL } from '@app/data';
 import { List } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -24,7 +24,7 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const Drawer_ = () => {
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -59,29 +59,169 @@ const SideBar = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.global.user);
   const username = useSelector((state) => state.global.username_tmp);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const dataMenu = useSelector((state) => state.global.dataMenu);
   const [selectKey, setSelectKey] = useState('A');
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //   };
-  //   fetchData();
-  //   return () => { };
-  // }, [dispatch, dataMenu]);
+  const RenderMenu = () => <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+    <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
+      <DrawerMenuItem
+        itemKey={'A'}
+        selectKey={selectKey}
+        setSelectKey={setSelectKey}
+        navigate={'HomeScreen'}
+        item={{}}
+        icon={'home'}
+        title={'Trang chủ'}
+        {...props}
+      />
+      <Divider width={1} color="#E0E0E0" />
+      <RenderAdminItem/>
+      {
+        accessToken ? (
+          <>
+            <DrawerMenuItem
+              itemKey={'E'}
+              selectKey={selectKey}
+              setSelectKey={setSelectKey}
+              navigate={'ChangePassScreen'}
+              item={{}}
+              icon={'lock-alt'}
+              title={'Đổi mật khẩu'}
+              {...props}
+            />
+            <Divider width={1} color="#E0E0E0" />
+            <DrawerMenuItem
+              itemKey={'F'}
+              selectKey={selectKey}
+              setSelectKey={setSelectKey}
+              icon={'sign-out-alt'}
+              title={'Đăng xuất'}
+              onPress={alertLogout}
+            />
+            <Divider width={1} color="#E0E0E0" />
+          </>) : <></>
+      }
+    </View>
+  </ScrollView>
 
-  const Logout = () => {
-    // if (username) {
-    //   messaging().unsubscribeFromTopic(username);
-    // }
-    // if (user && user.groupcode) {
-    //   let _groupcode = user.groupcode ? user.groupcode : [];
-    //   _groupcode.map((i) => messaging().unsubscribeFromTopic(i));
-    // }
+  const RenderAdminItem = () => <>
+    <List.Accordion
+      title={
+        <DrawerMenuItem
+          itemKey={'B'}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+          navigate={null}
+          item={{}}
+          icon={'searchengin'}
+          title={'Tìm kiếm thông tin'}
+          {...props}
+        />
+      }
+      titleStyle={{ margin: -5 }}
+      style={{ padding: 0, marginLeft: -2, backgroundColor: '#fff' }}>
+      <View>
+        <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+        <DrawerMenuChildrenItem
+          key={`B+1`}
+          itemKey={`B+1`}
+          navigate={'DBSBusiness_FilterScreen'}
+          item={{}}
+          title={'Tìm kiếm thông tin'}
+          subTitle={'Cơ sở sản xuất, kinh doanh sản phẩm công nghiệp'}
+          {...props}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+        />
+      </View>
+      <View>
+        <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+        <DrawerMenuChildrenItem
+          key={`B+2`}
+          itemKey={`B+2`}
+          navigate={null}
+          item={{}}
+          title={'Tìm kiếm thông tin'}
+          subTitle={'Sản phẩm công nghiệp'}
+          {...props}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+        />
+      </View>
+      <View>
+        <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+        <DrawerMenuChildrenItem
+          key={`B+3`}
+          itemKey={`B+3`}
+          navigate={null}
+          item={{}}
+          title={'Tìm kiếm thông tin'}
+          subTitle={'Khu công nghiệp'}
+          {...props}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+        />
+      </View>
+      <View>
+        <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+        <DrawerMenuChildrenItem
+          key={`B+4`}
+          itemKey={`B+4`}
+          navigate={null}
+          item={{}}
+          title={'Tìm kiếm thông tin'}
+          subTitle={'Cụm công nghiệp'}
+          {...props}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+        />
+      </View>
+      <View>
+        <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+        <DrawerMenuChildrenItem
+          key={`B+5`}
+          itemKey={`B+5`}
+          navigate={null}
+          item={{}}
+          title={'Tìm kiếm thông tin'}
+          subTitle={'Làng nghề công nghiệp'}
+          {...props}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+        />
+      </View>
+      <View>
+        <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+        <DrawerMenuChildrenItem
+          key={`B+6`}
+          itemKey={`B+6`}
+          navigate={null}
+          item={{}}
+          title={'Tìm kiếm thông tin'}
+          subTitle={'Địa điểm kinh doanh'}
+          {...props}
+          selectKey={selectKey}
+          setSelectKey={setSelectKey}
+        />
+      </View>
+    </List.Accordion>
+    <Divider width={1} color="#E0E0E0" />
+    <DrawerMenuItem
+      itemKey={'G'}
+      selectKey={selectKey}
+      setSelectKey={setSelectKey}
+      navigate={'MapScreen'}
+      item={{}}
+      icon={'map'}
+      title={'Bản đồ'}
+      {...props}
+    />
+    <Divider width={1} color="#E0E0E0" />
+  </>
 
-    dispatch(actions.logOut());
-  };
+  
 
   const alertLogout = () => {
     Alert.alert(
@@ -91,7 +231,7 @@ const SideBar = (props) => {
         { text: 'ĐÓNG', onPress: () => console.log('Thoat') },
         {
           text: 'ĐĂNG XUẤT',
-          onPress: Logout,
+          onPress: () => dispatch(actions.logOut()),
         },
       ],
       { cancelable: false },
@@ -100,157 +240,7 @@ const SideBar = (props) => {
   return (
     <>
       <DrawerMenuHeader />
-      <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-        <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-          <DrawerMenuItem
-            itemKey={'A'}
-            selectKey={selectKey}
-            setSelectKey={setSelectKey}
-            navigate={'HomeScreen'}
-            item={{}}
-            icon={'home'}
-            title={'Trang chủ'}
-            {...props}
-          />
-          <Divider width={1} color="#E0E0E0" />
-          <List.Accordion
-            title={
-              <DrawerMenuItem
-                itemKey={'B'}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-                navigate={null}
-                item={{}}
-                icon={'searchengin'}
-                title={'Tìm kiếm thông tin'}
-                {...props}
-              />
-            }
-            titleStyle={{ margin: -5 }}
-            style={{ padding: 0, marginLeft: -2, backgroundColor: '#fff' }}>
-            <View>
-              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
-              <DrawerMenuChildrenItem
-                key={`B+1`}
-                itemKey={`B+1`}
-                navigate={'DBSBusiness_FilterScreen'}
-                item={{}}
-                title={'Tìm kiếm thông tin'}
-                subTitle={'Cơ sở sản xuất, kinh doanh sản phẩm công nghiệp'}
-                {...props}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-              />
-            </View>
-            <View>
-              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
-              <DrawerMenuChildrenItem
-                key={`B+2`}
-                itemKey={`B+2`}
-                navigate={null}
-                item={{}}
-                title={'Tìm kiếm thông tin'}
-                subTitle={'Sản phẩm công nghiệp'}
-                {...props}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-              />
-            </View>
-            <View>
-              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
-              <DrawerMenuChildrenItem
-                key={`B+3`}
-                itemKey={`B+3`}
-                navigate={null}
-                item={{}}
-                title={'Tìm kiếm thông tin'}
-                subTitle={'Khu công nghiệp'}
-                {...props}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-              />
-            </View>
-            <View>
-              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
-              <DrawerMenuChildrenItem
-                key={`B+4`}
-                itemKey={`B+4`}
-                navigate={null}
-                item={{}}
-                title={'Tìm kiếm thông tin'}
-                subTitle={'Cụm công nghiệp'}
-                {...props}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-              />
-            </View>
-            <View>
-              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
-              <DrawerMenuChildrenItem
-                key={`B+5`}
-                itemKey={`B+5`}
-                navigate={null}
-                item={{}}
-                title={'Tìm kiếm thông tin'}
-                subTitle={'Làng nghề công nghiệp'}
-                {...props}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-              />
-            </View>
-            <View>
-              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
-              <DrawerMenuChildrenItem
-                key={`B+6`}
-                itemKey={`B+6`}
-                navigate={null}
-                item={{}}
-                title={'Tìm kiếm thông tin'}
-                subTitle={'Địa điểm kinh doanh'}
-                {...props}
-                selectKey={selectKey}
-                setSelectKey={setSelectKey}
-              />
-            </View>
-          </List.Accordion>
-          <Divider width={1} color="#E0E0E0" />
-          <DrawerMenuItem
-            itemKey={'G'}
-            selectKey={selectKey}
-            setSelectKey={setSelectKey}
-            navigate={'MapScreen'}
-            item={{}}
-            icon={'map'}
-            title={'Bản đồ'}
-            {...props}
-          />
-          <Divider width={1} color="#E0E0E0" />
-          {
-            AccessToken ? (
-              <>
-                <DrawerMenuItem
-                  itemKey={'E'}
-                  selectKey={selectKey}
-                  setSelectKey={setSelectKey}
-                  navigate={'ChangePassScreen'}
-                  item={{}}
-                  icon={'lock-alt'}
-                  title={'Đổi mật khẩu'}
-                  {...props}
-                />
-                <Divider width={1} color="#E0E0E0" />
-                <DrawerMenuItem
-                  itemKey={'F'}
-                  selectKey={selectKey}
-                  setSelectKey={setSelectKey}
-                  icon={'sign-out-alt'}
-                  title={'Đăng xuất'}
-                  onPress={alertLogout}
-                />
-              </>) : <></>
-          }
-        </View>
-      </ScrollView>
+      <RenderMenu />
     </>
   );
 };

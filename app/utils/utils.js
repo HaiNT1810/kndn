@@ -9,3 +9,4 @@ export const handleImage = (values, URL) => {
   });
   return res;
 };
+

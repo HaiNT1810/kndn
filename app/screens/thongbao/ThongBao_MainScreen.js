@@ -84,7 +84,7 @@ const ThongBao_MainScreen = (props) => {
   const navigation = useNavigation();
   const route = useRoute();
   const isRefresh = useSelector((state) => state.global.isRefresh);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const [refreshing, setRefreshing] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [footerLoad, setFooterLoad] = useState(false);
@@ -97,7 +97,7 @@ const ThongBao_MainScreen = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await requestGET(`${BASE_URL}/Notifications?skip=0&top=${top}&token=${AccessToken}`);
+        const res = await requestGET(`${BASE_URL}/Notifications?skip=0&top=${top}&token=${accessToken}`);
         setData(res?.result ?? []);
         setTotal(res?.count ?? 0);
         setIsLoading(false);
@@ -127,7 +127,7 @@ const ThongBao_MainScreen = (props) => {
   const getLoadMore = async () => {
     if (top < total) {
       setFooterLoad(true);
-      const res = await requestGET(`${BASE_URL}/Notifications?skip=${top}&top=${top + 20}&token=${AccessToken}`);
+      const res = await requestGET(`${BASE_URL}/Notifications?skip=${top}&top=${top + 20}&token=${accessToken}`);
       if (res && res.result) {
         setData(data.concat(res.result));
         setTop(top + 20);
@@ -137,9 +137,9 @@ const ThongBao_MainScreen = (props) => {
   };
   const handleRead = async (id) => {
     try {
-      const res = await requestPOST(`${BASE_URL}/Notifications/markasread/${id}?token=${AccessToken}`);
+      const res = await requestPOST(`${BASE_URL}/Notifications/markasread/${id}?token=${accessToken}`);
       if (res) {
-        dispatch(actions.GetMenu(AccessToken, true));
+        dispatch(actions.GetMenu(accessToken, true));
       }
     } catch (error) {
       console.log(error);

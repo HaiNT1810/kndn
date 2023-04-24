@@ -16,47 +16,39 @@ import {BASE_URL, FILE_URL, FILE_PATH} from '@app/data';
 const ChangePassScreen = (props) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const AccessToken = useSelector((state) => state.global.AccessToken);
-  const user = useSelector((state) => state.global.user);
-  const username_tmp = useSelector((state) => state.global.username_tmp);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [newpass, setNewpas] = useState('');
+  const [newPass, setNewpas] = useState('');
   const [password2, setPassword2] = useState('');
-  const [oldpass, setOldpass] = useState('');
+  const [oldPass, setOldPass] = useState('');
 
   const handleOnpress = async () => {
     Keyboard.dismiss();
-    if (!oldpass || !newpass || !password2) {
+    if (!oldPass || !newPass || !password2) {
       showMessage({
         message: 'Thất bại',
         description: 'Vui lòng điền đầy đủ thông tin!',
         type: 'warning',
         duration: 800,
       });
-    } else if (newpass !== password2) {
+    } else if (newPass !== password2) {
       showMessage({
         message: 'Thất bại',
-        description: 'Mật khẩu mới không khớp! Vui lòng kiểm tra lại!',
+        description: 'Mật khẩu mới không khớp, vui lòng kiểm tra lại!',
         type: 'warning',
         duration: 800,
       });
-    } else {
+    } 
+    else {
       try {
         setIsLoading(true);
-        let _body = {password: oldpass, newPassword: newpass, token: AccessToken};
-        let res = await requestPOST(`${BASE_URL}/UpdatePassword`, _body);
-        console.log(res);
+        let _body = {oldPass, newPass};
+        let res = await requestPOST(`${BASE_URL}/app/changePass`, _body, accessToken);
         setIsLoading(false);
-        if (res?.result == true) {
-          showMessage({
-            message: 'Thành công',
-            description: 'Mật khẩu được đổi thành công!',
-            type: 'success',
-            duration: 800,
-          });
-          dispatch(actions.login(username_tmp, newpass));
-          //   navigation.navigate('HomeScreen');
+        if (res?.data && res?.error?.code == "200") {
+          dispatch(actions.logOut());
+          alertLogout();
           onReset();
         } else {
           showMessage({
@@ -71,40 +63,30 @@ const ChangePassScreen = (props) => {
         setIsLoading(false);
         showMessage({
           message: 'Thất bại',
-          description: 'Thông tin gửi chưa thành công! Vui lòng kiểm tra lại!',
+          description: 'Có lỗi xảy ra, vui lòng kiểm tra lại!',
           type: 'danger',
           duration: 800,
         });
       }
     }
   };
-  const Logout = () => {
-    if (username_tmp) {
-      messaging().unsubscribeFromTopic(username_tmp);
-    }
-    if (user && user.groupcode) {
-      let _groupcode = user.groupcode ? user.groupcode : [];
-      _groupcode.map((i) => messaging().unsubscribeFromTopic(i));
-    }
-    dispatch(actions.logOut());
-  };
 
   const alertLogout = () => {
     Alert.alert(
-      'Thành công!',
-      'Đổi mật khẩu thành công! Vui lòng đăng nhập lại!',
+      'Thành công',
+      'Đổi mật khẩu thành công, vui lòng đăng nhập lại!',
       [
-        //   {text: 'ĐÓNG', onPress: () => console.log('Thoat')},
         {
-          text: 'ĐĂNG XUẤT',
-          onPress: Logout,
+          text: 'OK',
+          onPress: () => navigation.navigate("LoginScreen"),
         },
+        
       ],
       {cancelable: false},
     );
   };
   const onReset = () => {
-    setOldpass('');
+    setOldPass('');
     setNewpas('');
     setPassword2('');
   };
@@ -116,15 +98,15 @@ const ChangePassScreen = (props) => {
         <View style={{margin: 10}}>
           <ItemTextInput
             showEye={true}
-            value={oldpass}
-            onChangeText={setOldpass}
+            value={oldPass}
+            onChangeText={setOldPass}
             placeholder={'Mật khẩu cũ'}
             icon={'key'}
             title={'Mật khẩu cũ'}
           />
           <ItemTextInput
             showEye={true}
-            value={newpass}
+            value={newPass}
             onChangeText={setNewpas}
             placeholder={'Mật khẩu'}
             icon={'key'}

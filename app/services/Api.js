@@ -14,12 +14,14 @@ export const requestGET = async (URL) => {
     });
 };
 
-export const requestPOST = async (URL, data) => {
+export const requestPOST = async (URL, data, token = null) => {
+  console.log(token)
   return await axios({
     method: 'POST',
     url: URL,
     data: data,
     timeout: 15000,
+    headers: {TDAuthorization: `TDBearer ${token}`}
   })
     .then(function (response) {
       return response.data;

@@ -10,4 +10,5 @@ export default {
   isIphoneX,
   ToolbarHeight: isIphoneX ? 35 : 0,
   isAndroid: Platform.OS === 'android',
+  version: Platform.Version
 };

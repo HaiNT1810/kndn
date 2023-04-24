@@ -109,6 +109,7 @@ const ActionButton = props => {
       borderRadius: props.size / 2,
       alignItems: 'center',
       justifyContent: 'center',
+
     };
 
     const Touchable = getTouchableComponent(props.useNativeFeedback);

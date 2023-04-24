@@ -26,9 +26,23 @@ export const login = (username, password) => (dispatch) => {
   return requestFromServer
     .Login(username, password)
     .then((response) => {
-      let result = response.data;
-      if (result.error.code == 200) {
-        let tmp = { username: username, password: password, token: result.data.Token, user: null };
+      let _res = response?.data;
+      if (_res?.data) {
+        let tmp = { 
+          username,
+          password,
+          token: _res?.token,
+          user: {
+            avartar: _res?.data?.avartar,
+            fullName: _res?.data?.fullName,
+            birthday: _res?.data?.birthday,
+            address: _res?.data?.address,
+            sex: _res?.data?.sex,
+            phoneNumber: _res?.data?.phoneNumber,
+            email: _res?.data?.email,
+            roleCodes: _res?.data?.roleCodes
+          }
+        };
         dispatch(actions.loginSuccess(tmp));
       } else {
         dispatch(actions.catchError({ error: 'Đăng nhập không thành công', callType: callTypes.action }));

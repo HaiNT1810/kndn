@@ -21,9 +21,11 @@ const RootContainerScreen = () => {
 
   const isLoadIntro = useSelector((state) => state.global.isLoadIntro);
   let user = useSelector((state) => state.global.user);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   let username = useSelector((state) => state.global.username_tmp);
   const dataApp = useSelector((state) => state.global.dataApp);
+
+
 
   const [netStatus, setNet] = useState(true);
 

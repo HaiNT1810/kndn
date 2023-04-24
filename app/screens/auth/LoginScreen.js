@@ -43,15 +43,15 @@ const LoginScreen = () => {
     const isRemember_tmp = useSelector((state) => state.global.isRemember);
 
     const [username, setUsername] = useState(username_tmp);
-    const [password, setPassword] = isRemember_tmp ? useState(password_tmp) : useState('');
+    const [password, setPassword] = useState('');
     const [hide, isHide] = useState(false);
     const [isRemember, setIsRemember] = useState(isRemember_tmp || false);
 
-    const { actionsLoading, error, AccessToken } = useSelector(
+    const { actionsLoading, error, accessToken } = useSelector(
         (state) => ({
             actionsLoading: state.global.actionsLoading,
             error: state.global.error,
-            AccessToken: state.global.AccessToken
+            accessToken: state.global.accessToken
         }),
         shallowEqual,
     );
@@ -59,26 +59,21 @@ const LoginScreen = () => {
     useEffect(() => {
         if (error) {
             showMessage({
-                message: 'Tài khoản hoặc mật khẩu không đúng!!!',
+                message: 'Tài khoản hoặc mật khẩu không đúng!',
                 type: 'danger',
             });
             //dispatch(actions.delError());
         }
-        if (AccessToken) {
+        if (accessToken) {
             showMessage({
                 message: 'Đăng nhập thành công',
-                description: "Vui lòng chờ trong giây lát!!!",
+                description: "Vui lòng chờ trong giây lát!",
                 type: 'success',
             });
             navigation.navigate('HomeScreen', {});
         }
         return () => { };
-    }, [error, AccessToken]);
-
-    let fcmToken = useSelector((state) => state.global.fcmToken);
-    if (fcmToken == null) {
-        fcmToken = '';
-    }
+    }, [error, accessToken]);
 
     const handleLogin = async (username_, password_) => {
         Keyboard.dismiss();

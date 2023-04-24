@@ -42,7 +42,7 @@ const ChiTietCang_MainScreen = (props) => {
   const navigation = useNavigation();
   const route = useRoute();
   const {data} = route?.params ?? {};
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const [isLoading, setIsLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [dataTB, setDataTB] = useState({});

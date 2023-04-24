@@ -33,7 +33,7 @@ const UserProfile_EditScreen = (props) => {
   const dispatch = useDispatch();
   const dataService = useSelector((state) => state.global.dataService);
   const user = useSelector((state) => state.global.user);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const [isLoading, setIsLoading] = useState(false);
   const iconColor = Colors.blue;
   const [Name, setName] = useState(user?.Name || "");
@@ -47,7 +47,7 @@ const UserProfile_EditScreen = (props) => {
       messages: ValidationMessages
     });
   useEffect(() => {
-    if (!AccessToken) {
+    if (!accessToken) {
       navigation.navigate("HomeScreen")
     }
     const fetchData = async () => {

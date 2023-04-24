@@ -11,7 +11,7 @@ const initialState = {
   user: null,
   username_tmp: '',
   password_tmp: '',
-  AccessToken: null,
+  accessToken: null,
   listLoading: false,
   actionsLoading: false,
   actionsLoadingMenu: false,
@@ -69,7 +69,7 @@ export const globalSlice = createSlice({
     },
     logOut: (state, action) => {
       console.log('LOGOUT');
-      state.AccessToken = null;
+      state.accessToken = null;
       state.user = null;
       state.dataMenu = null;
     },
@@ -95,7 +95,7 @@ export const globalSlice = createSlice({
       const payload = action.payload;
 
       state.user = payload.user;
-      state.AccessToken = payload.token;
+      state.accessToken = payload.token;
       state.username_tmp = payload.username;
       state.password_tmp = payload.password;
     },
