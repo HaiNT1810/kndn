@@ -22,25 +22,25 @@ export const setLoadIntro = (isLoadintro) => (dispatch) => {
 
 export const login = (username, password) => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
-
   return requestFromServer
     .Login(username, password)
     .then((response) => {
-      let _res = response?.data;
-      if (_res?.data) {
-        let tmp = { 
+      let res = response?.data;
+      if (res) {
+        const _res = res?.data;
+        let tmp = {
           username,
           password,
-          token: _res?.token,
+          token: _res?.Token,
           user: {
-            avartar: _res?.data?.avartar,
-            fullName: _res?.data?.fullName,
-            birthday: _res?.data?.birthday,
-            address: _res?.data?.address,
-            sex: _res?.data?.sex,
-            phoneNumber: _res?.data?.phoneNumber,
-            email: _res?.data?.email,
-            roleCodes: _res?.data?.roleCodes
+            avartar: _res?.User.Avatar ?? "",
+            fullName: _res?.User.FullName ?? "",
+            birthday: _res?.User.Birthday ?? "",
+            address: _res?.User.Address ?? "",
+            sex: _res?.User.Sex ?? "",
+            phoneNumber: _res?.User.Phone ?? "",
+            email: _res?.User.Email ?? "",
+            permissions: _res?.User.Permissions ?? ""
           }
         };
         dispatch(actions.loginSuccess(tmp));

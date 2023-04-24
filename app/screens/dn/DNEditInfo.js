@@ -61,7 +61,7 @@ const DNEditInfo = (props) => {
         });
       } else {
         var body = {
-          token: AccessToken,
+          token: accessToken,
           entity: newData,
         };
 

@@ -22,7 +22,7 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const Drawer_ = () => {
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -57,7 +57,7 @@ const SideBar = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.global.user);
   const username = useSelector((state) => state.global.username_tmp);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const dataMenu = useSelector((state) => state.global.dataMenu);
   const [selectKey, setSelectKey] = useState('DN');
   const navigation = useNavigation();
@@ -371,7 +371,7 @@ const SideBar = (props) => {
           </List.Accordion>
           <Divider width={1} color="#E0E0E0" />
           {
-            AccessToken ? (
+            accessToken ? (
               <>
                 <DrawerMenuItem
                   itemKey={'E'}

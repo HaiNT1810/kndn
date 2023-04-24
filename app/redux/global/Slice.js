@@ -98,8 +98,14 @@ export const globalSlice = createSlice({
 
       state.user = payload.user;
       state.accessToken = payload.token;
-      state.username_tmp = payload.username;
-      state.password_tmp = payload.password;
+      if (state.isRemember) {
+        state.username_tmp = payload.username;
+        state.password_tmp = payload.password;
+      }
+      else {
+        state.username_tmp = '';
+        state.password_tmp = '';
+      }
     },
     setMainScreen: (state, action) => {
       state.mainScreen = action.payload;

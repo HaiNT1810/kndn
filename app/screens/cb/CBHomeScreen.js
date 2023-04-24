@@ -21,7 +21,7 @@ const CBHomeScreen = (props) => {
   const navigation = useNavigation();
   const dataService = useSelector((state) => state.global.dataService);
   const user = useSelector((state) => state.global.user);
-  const AccessToken = useSelector((state) => state.global.AccessToken);
+  const accessToken = useSelector((state) => state.global.accessToken);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const route = useRoute();

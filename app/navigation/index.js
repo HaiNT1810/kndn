@@ -114,13 +114,13 @@ const RootContainerScreen = () => {
               }}
             />
           ) :
-            mainScreen && mainScreen == "dn" && AccessToken ? (<Stack.Screen
+            mainScreen && mainScreen == "dn" && accessToken ? (<Stack.Screen
               name="DNStack"
               component={DNStack}
               options={{
                 animationEnabled: false,
               }}
-            />) : mainScreen && mainScreen == "cb" && AccessToken ? (<Stack.Screen
+            />) : mainScreen && mainScreen == "cb" && accessToken ? (<Stack.Screen
               name="CBStack"
               component={CBStack}
               options={{

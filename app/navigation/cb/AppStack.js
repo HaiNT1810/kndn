@@ -15,7 +15,7 @@ import * as actions from '../../redux/global/Actions';
 const CB_AppStack = () => {
   const navigation = useNavigation();
   const actionsLoadingMenu = useSelector((state) => state.global.actionsLoadingMenu);
-  //const AccessToken = useSelector((state) => state.global.AccessToken);
+  //const accessToken = useSelector((state) => state.global.accessToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,8 +28,8 @@ const CB_AppStack = () => {
   }, []);
 
   useEffect(() => {
-    // if (AccessToken) {
-    //   dispatch(actions.GetMenu(AccessToken));
+    // if (accessToken) {
+    //   dispatch(actions.GetMenu(accessToken));
     // }
     return () => { };
   }, [dispatch]);

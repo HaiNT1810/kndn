@@ -41,9 +41,8 @@ const UserProfileScreen = (props) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const iconColor = Colors.blue;
-  const { roleCodes } = user || [];
+  const { permissions } = user?.permissions || {};
   const [showAll, setShowAll] = useState(false);//Hiển thị tất cả hoặc ẩn tất cả các legend
-
 
   useEffect(() => {
     if (!accessToken) {
@@ -58,7 +57,7 @@ const UserProfileScreen = (props) => {
 
   const headerTitle = () => {
     let result = "Thông tin ";
-    if (roleCodes.includes("DoanhNghiep")) {
+    if (permissions?.includes("DoanhNghiep")) {
       result += "doanh nghiệp"
     }
     return result;
@@ -232,7 +231,7 @@ const UserProfileScreen = (props) => {
                 position: 'relative',
               }}>
                 <ActionButton
-                  
+
                   elevation={5}
                   buttonText=""
                   buttonColor={Colors.success}
@@ -298,9 +297,9 @@ const UserProfileScreen = (props) => {
                     </Flex.Item>
                     <Flex.Item flex={2}>
                       <View>
-                        <Text>Admin</Text>
-                        <Text>abc@gmail.com</Text>
-                        <Text>0132654987</Text>
+                        <Text>{user.fullName}</Text>
+                        <Text>{user.email || <Text style={{ fontStyle: 'italic', color: Colors.lightGray }}>Chưa cập nhật email</Text>}</Text>
+                        <Text>{user.phoneNumber || <Text style={{ fontStyle: 'italic', color: Colors.lightGray }}>Chưa cập nhật số điện thoại</Text>}</Text>
                       </View>
                     </Flex.Item>
                   </Flex>

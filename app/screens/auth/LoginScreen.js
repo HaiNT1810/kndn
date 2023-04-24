@@ -43,7 +43,7 @@ const LoginScreen = () => {
     const isRemember_tmp = useSelector((state) => state.global.isRemember);
 
     const [username, setUsername] = useState(username_tmp);
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState(password_tmp);
     const [hide, isHide] = useState(false);
     const [isRemember, setIsRemember] = useState(isRemember_tmp || false);
 
@@ -62,7 +62,7 @@ const LoginScreen = () => {
                 message: 'Tài khoản hoặc mật khẩu không đúng!',
                 type: 'danger',
             });
-            //dispatch(actions.delError());
+            dispatch(actions.delError());
         }
         if (accessToken) {
             showMessage({

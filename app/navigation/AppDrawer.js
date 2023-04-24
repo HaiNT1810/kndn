@@ -250,7 +250,7 @@ const SideBar = (props) => {
             title={'Trang chủ'}
             {...props}
           />
-          {AccessToken ?//TODO: Kiểm tra thêm nếu là quyền doanh nghiệp
+          {accessToken ?//TODO: Kiểm tra thêm nếu là quyền doanh nghiệp
             (
               <>
                 <Divider width={1} color="#E0E0E0" />
@@ -270,7 +270,7 @@ const SideBar = (props) => {
               </>
             ) : <></>
           }
-          {AccessToken ?//TODO: Kiểm tra thêm nếu là quyền cán bộ/lãnh đạo
+          {accessToken ?//TODO: Kiểm tra thêm nếu là quyền cán bộ/lãnh đạo
             (
               <>
                 <Divider width={1} color="#E0E0E0" />
@@ -404,7 +404,7 @@ const SideBar = (props) => {
           />
           <Divider width={1} color="#E0E0E0" />
           {
-            AccessToken ? (
+            accessToken ? (
               <>
                 <DrawerMenuItem
                   itemKey={'E'}

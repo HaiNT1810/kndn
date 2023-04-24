@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {BASE_URL} from '../../data';
+import { BASE_URL } from '../../data';
 
 export function Login(username, password) {
-  return axios.post(`${BASE_URL}/app/login`, {
+  return axios.post(`${BASE_URL}/login`, {
     username,
     password,
   });
