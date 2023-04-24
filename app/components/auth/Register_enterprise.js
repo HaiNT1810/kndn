@@ -12,7 +12,7 @@ import ValidationRules from '@app/config/ValidationRules';
 import { useNavigation } from '@react-navigation/native';
 
 
-const Register_bussiness = (props) => {
+const Register_enterprise = (props) => {
   var navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -182,7 +182,7 @@ const Register_bussiness = (props) => {
   );
 };
 
-export default Register_bussiness;
+export default Register_enterprise;
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'flex-start', alignItems: 'center' },

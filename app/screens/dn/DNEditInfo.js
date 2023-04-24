@@ -14,7 +14,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5Pro';
 import { ScrollView } from 'react-native';
 import { Image } from 'react-native';
 import { ItemDateInput, TDDetailLegend, TDDetailText, TDTextInputNew } from '@app/components/tdcommon';
-import { BASE_URL, bussinessData } from '@app/data';
+import { BASE_URL, enterpriseData } from '@app/data';
 import moment from 'moment';
 import ActionButton from 'react-native-action-button';
 import { Avatar, CheckBox } from 'react-native-elements';
@@ -97,7 +97,7 @@ const DNEditInfo = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setData(bussinessData);
+      setData(enterpriseData);
       setRefreshing(false);
     };
     if (refreshing) {

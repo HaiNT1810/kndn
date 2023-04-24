@@ -18,7 +18,7 @@ import { ScrollView } from 'react-native';
 import { Image } from 'react-native';
 import { Comment_StartView, Posts_TimeLikeView } from '@app/components/interactive';
 import { TDDetailLegend, TDDetailText } from '@app/components/tdcommon';
-import { BASE_URL, bussinessData } from '@app/data';
+import { BASE_URL, enterpriseData } from '@app/data';
 import moment from 'moment';
 import TDDetailListView from '@app/components/tdcommon/TDDetailListView';
 import ActionButton from 'react-native-action-button';
@@ -54,7 +54,7 @@ const DNInfo = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setData(bussinessData);
+      setData(enterpriseData);
       setRefreshing(false);
     };
     if (refreshing) {
@@ -186,7 +186,7 @@ const DNInfo = (props) => {
                       </TDDetailLegend>
                     </> : <></>}
                     <TouchableOpacity onPress={() => { setShowAll(!showAll) }}><Text>{showAll ? "Đóng tất cả" : "Mở tất cả"}</Text></TouchableOpacity>
-                    <Comment_StartView type="business" dataId={1}></Comment_StartView>
+                    <Comment_StartView type="enterprise" dataId={1}></Comment_StartView>
                   </View>
                 </View>
               </ScrollView>

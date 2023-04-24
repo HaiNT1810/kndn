@@ -23,7 +23,7 @@ const { height, width } = Dimensions.get('window');
 import * as actions from '../../redux/global/Actions';
 
 import { Colors, Helpers } from '../../config';
-import { Register_personal, Register_bussiness } from '@app/components/auth'
+import { Register_personal, Register_enterprise } from '@app/components/auth'
 import { List } from '@ant-design/react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient'
@@ -98,7 +98,7 @@ const RegisterScreen = () => {
                   </List.Item>
                 </List>
               </View> :
-              type == 1 ? <Register_personal></Register_personal> : <Register_bussiness></Register_bussiness>
+              type == 1 ? <Register_personal></Register_personal> : <Register_enterprise></Register_enterprise>
             }
 
             {/* <View>
@@ -107,7 +107,7 @@ const RegisterScreen = () => {
                   <Register_personal></Register_personal>
                 </View>
                 <View style={{ height: height - 180 }}>
-                  <Register_bussiness></Register_bussiness>
+                  <Register_enterprise></Register_enterprise>
                 </View>
               </Tabs>
             </View> */}

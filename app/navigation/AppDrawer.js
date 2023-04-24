@@ -9,7 +9,7 @@ import messaging from '@react-native-firebase/messaging';
 
 import { HomeScreen, ChangePassScreen } from '../screens/home';
 import { MapScreen } from '../screens/map';
-import { DBSBusiness_FilterScreen } from '../screens/dbs';
+import { DBSEnterprise_FilterScreen } from '../screens/dbs';
 
 import { DrawerMenuHeader, DrawerMenuItem, DrawerMenuChildrenItem } from '../components/tdcommon';
 import { Styles } from '@themes';
@@ -38,7 +38,7 @@ const Drawer_ = () => {
       useLegacyImplementation={true}>
       <Drawer.Screen name="HomeScreen" component={HomeScreen} />
       <Drawer.Screen name="MapScreen" component={MapScreen} />
-      <Drawer.Screen name="DBSBusiness_FilterScreen" component={DBSBusiness_FilterScreen} />
+      <Drawer.Screen name="DBSEnterprise_FilterScreen" component={DBSEnterprise_FilterScreen} />
       <Drawer.Screen name="ChangePassScreen" component={ChangePassScreen} />
       {/* <Drawer.Screen name="ThongBao_MainScreen" component={ThongBao_MainScreen} /> */}
     </Drawer.Navigator>
@@ -125,7 +125,7 @@ const SideBar = (props) => {
         <DrawerMenuChildrenItem
           key={`B+1`}
           itemKey={`B+1`}
-          navigate={'DBSBusiness_FilterScreen'}
+          navigate={'DBSEnterprise_FilterScreen'}
           item={{}}
           title={'Tìm kiếm thông tin'}
           subTitle={'Cơ sở sản xuất, kinh doanh sản phẩm công nghiệp'}
@@ -275,10 +275,10 @@ const SideBar = (props) => {
               <>
                 <Divider width={1} color="#E0E0E0" />
                 <DrawerMenuItem
-                  itemKey={'QL'}
+                  itemKey={'CB'}
                   selectKey={selectKey}
                   setSelectKey={setSelectKey}
-                  navigate={'QLHomeScreen'}
+                  navigate={'CBHomeScreen'}
                   item={{}}
                   icon={'arrow-alt-right'}
                   title={'Chuyển ứng dụng quản lý'}
@@ -311,7 +311,7 @@ const SideBar = (props) => {
               <DrawerMenuChildrenItem
                 key={`B+1`}
                 itemKey={`B+1`}
-                navigate={'DBSBusiness_FilterScreen'}
+                navigate={'DBSEnterprise_FilterScreen'}
                 item={{}}
                 title={'Tìm kiếm thông tin'}
                 subTitle={'Cơ sở sản xuất, kinh doanh sản phẩm công nghiệp'}

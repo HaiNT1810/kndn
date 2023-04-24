@@ -14,8 +14,8 @@ import { ForSale_DetailScreen } from '../screens/forsalse';
 import { ForBuy_DetailScreen } from '../screens/forbuy';
 import { MapScreen } from '../screens/map';
 import { LoginScreen, RegisterScreen } from '../screens/auth'
-import { UserProfileScreen, LoginHistoryScreen, UserProfile_EditScreen, Bussiness_EditScreen, Bussiness_ViewScreen } from '../screens/profile'
-import { DBSBusiness_FilterScreen, DBSBusiness_DetailScreen, DBSProduct_FilterScreen, DBSProduct_DetailScreen } from '../screens/dbs';
+import { UserProfileScreen, LoginHistoryScreen, UserProfile_EditScreen, Enterprise_EditScreen, Enterprise_ViewScreen } from '../screens/profile'
+import { DBSEnterprise_FilterScreen, DBSEnterprise_DetailScreen, DBSProduct_FilterScreen, DBSProduct_DetailScreen } from '../screens/dbs';
 import * as actions from '../redux/global/Actions';
 
 const AppStack = () => {
@@ -74,14 +74,14 @@ const AppStack = () => {
       <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
       <Stack.Screen name="LoginHistoryScreen" component={LoginHistoryScreen} />
       <Stack.Screen name="UserProfile_EditScreen" component={UserProfile_EditScreen} />
-      {/* Business User */}
-      <Stack.Screen name="Bussiness_EditScreen" component={Bussiness_EditScreen} />
-      <Stack.Screen name="Bussiness_ViewScreen" component={Bussiness_ViewScreen} />
+      {/* Enterprise User */}
+      <Stack.Screen name="Enterprise_EditScreen" component={Enterprise_EditScreen} />
+      <Stack.Screen name="Enterprise_ViewScreen" component={Enterprise_ViewScreen} />
       {/* Map */}
       <Stack.Screen name="MapScreen" component={MapScreen} />
       {/* Database System */}
-      <Stack.Screen name="DBSBusiness_FilterScreen" component={DBSBusiness_FilterScreen} />
-      <Stack.Screen name="DBSBusiness_DetailScreen" component={DBSBusiness_DetailScreen} />
+      <Stack.Screen name="DBSEnterprise_FilterScreen" component={DBSEnterprise_FilterScreen} />
+      <Stack.Screen name="DBSEnterprise_DetailScreen" component={DBSEnterprise_DetailScreen} />
       <Stack.Screen name="DBSProduct_FilterScreen" component={DBSProduct_FilterScreen} />
       <Stack.Screen name="DBSProduct_DetailScreen" component={DBSProduct_DetailScreen} />
       {/*  */}

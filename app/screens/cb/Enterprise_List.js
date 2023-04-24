@@ -20,57 +20,57 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { Colors } from '@app/themes';
 import { TD_Header, TD_HeaderRight_Icon } from '@app/components';
 import { requestGET } from '@app/services/Api';
-import { BASE_URL, fullOrderData } from '@app/data';
 import { Flex, Tag } from '@ant-design/react-native';
 import { TDPickerSelect, TDRadioList, TDTextInputNew } from '@app/components/tdcommon';
 import { DbSFilter_SumaryResult } from '@app/components/database-system';
 import { Button } from 'react-native-elements';
 const { height, width } = Dimensions.get('window');
+import { BASE_URL, fullOrderData } from '@app/data';
 
 const take = 10;
 let _data = [
   {
     ID: 1,
-    Name: "Sản phẩm a",
-    Enterprise: "Công ty TNHH Kim Cương",
+    Name: "Công ty a",
+    Website: "https://a.com.vn",
     Avatar: require('@images/products/mechanical-engineering.jpg'),
     tags: ["Dập1", "Hàn", "Chế tạo"]
   },
   {
     ID: 2,
-    Name: "Sản phẩm b",
-    Enterprise: "Công ty gia đình",
+    Name: "Công ty b",
+    Website: "b.com.vn",
     tags: ["Dập2", "Hàn2", "Chế tạo2"]
   },
   {
     ID: 13,
-    Name: "Sản phẩm c",
-    Enterprise: "Công ty Tin học",
+    Name: "Công ty c",
+    Website: "c.com.vn",
     Avatar: require('@images/products/mechanical-engineering.jpg'),
     tags: ["Dập3", "Hàn3", "Chế tạo3"]
   },
   {
     ID: 14,
-    Name: "Sản phẩm d",
-    Enterprise: "Công ty cổ phần abc",
+    Name: "Công ty d",
+    Website: "d.com.vn",
     tags: ["Dập4", "Hàn4", "Chế tạo4"]
   },
   {
     ID: 15,
-    Name: "Sản phẩm e",
-    Enterprise: "Công ty aaa",
+    Name: "Công ty e",
+    Website: "e.com.vn",
     tags: ["Dập5", "Hàn5", "Chế tạo5"]
   },
   {
     ID: 16,
-    Name: "Sản phẩm trách nhiệm có hạn abc",
-    Enterprise: "NONAME",
+    Name: "Công ty trách nhiệm có hạn abc",
+    Website: "abc.com.vn",
     Avatar: require('@images/products/mechanical-engineering.jpg'),
     tags: ["Dập6", "Hàn6", "Chế tạo6"]
   },
 ]
 
-const DBSProduct_FilterScreen = (props) => {
+const Enterprise_List = (props) => {
   const navigation = useNavigation();
   const dataService = useSelector((state) => state.global.dataService);
   const user = useSelector((state) => state.global.user);
@@ -129,12 +129,14 @@ const DBSProduct_FilterScreen = (props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.TD_Background }}>
-      <TD_Header checkStack {...props} title="Tìm sản phẩm"
+      <TD_Header checkStack {...props} title="Quản lý doanh nghiệp"
         RightComponent={() => (<TD_HeaderRight_Icon showSearch={true} showDots={true} funcSearch={funcSearch} funcMore={funcMore} />)} />
       {/* Search & filter */}
       <View style={styles.SearchNMore}>
         <ScrollView style={showSearchBox ? styles.toggleShow : styles.toggleHide} persistentScrollbar={true}>
+          <Picker title="Số lượng lao động" value={slLaoDong} data={fullOrderData} defaultValue={{}} setDataFunc={setslLaoDong} disabled={refreshing}></Picker>
           <Picker title="Loại hình doanh nghiệp" value={loaiHinh} data={fullOrderData} defaultValue={{}} setDataFunc={setLoaiHinh} disabled={refreshing}></Picker>
+          <Picker title="Tiêu chuẩn chất lượng" value={tieuChuan} data={fullOrderData} defaultValue={{}} setDataFunc={setTieuChuan} disabled={refreshing}></Picker>
           <Picker title="Địa bàn" value={diaBan} data={fullOrderData} defaultValue={{}} setDataFunc={setDiaBan} disabled={refreshing}></Picker>
           <TDTextInputNew value={searchStr} onChangeText={setSearchStr} placeholder={'Từ khóa'} title={'Từ khóa'} disable={refreshing} />
           <View style={{ marginVertical: 5, flexDirection: 'row', justifyContent: 'center' }}>
@@ -190,6 +192,15 @@ const DBSProduct_FilterScreen = (props) => {
     </View>
   );
 };
+const pressWebsite = async (url) => {
+  const supported = await Linking.canOpenURL(url);
+
+  if (supported) {
+    await Linking.openURL(url);
+  } else {
+    Alert.alert(`Đường dẫn không hợp lệ: ${url}`);
+  }
+}
 
 //Render item trong danh sách
 const RenderItem = (props) => {
@@ -209,7 +220,7 @@ const RenderItem = (props) => {
     <Animated.View animation={''} style={{ left: state }}>
       <View style={styles.item}>
         <Text style={styles.badge}>{numberOrder}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("DBSProduct_DetailScreen", { id: item.ID })}>
+        <TouchableOpacity onPress={() => navigation.navigate("DBSEnterprise_DetailScreen", { id: item.ID })}>
           <Flex>
             <Flex.Item><Image
               resizeMode={'contain'}
@@ -219,7 +230,9 @@ const RenderItem = (props) => {
             <Flex.Item flex={3}>
               <View>
                 <Text style={styles.itemName}>{item.Name}</Text>
-                <Text style={styles.itemContent}>{item.Enterprise}</Text>
+                <TouchableOpacity onPress={() => pressWebsite(item.Website)}>
+                  <Text style={styles.itemContent}>{item.Website}</Text>
+                </TouchableOpacity>
                 <Text>
                   <Text style={{ fontSize: 13 }}>Công nghệ:</Text>
                   <Text>{item.tags?.map(a => { return (<Tag style={{ paddingRight: 3 }} key={item.ID + a} small>{a}</Tag>) })}</Text>
@@ -251,7 +264,7 @@ const Picker = (props) => {
   )
 }
 
-export default DBSProduct_FilterScreen;
+export default Enterprise_List;
 const styles = StyleSheet.create({
   item: { width: '100%', borderBottomWidth: 0.5, borderBottomColor: Colors.lightGray, paddingVertical: 10 },
   itemImage: { width: '95%', height: 50, marginBottom: 2, marginRight: 10, borderRadius: 5 },

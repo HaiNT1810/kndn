@@ -16,13 +16,13 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { Colors } from '@app/themes';
 import { TD_Header } from '@app/components';
 import { requestGET } from '@app/services/Api';
-import { BASE_URL, bussinessData } from '@app/data';
+import { BASE_URL, enterpriseData } from '@app/data';
 import HTMLView from 'react-native-htmlview';
 import { Comment_StartView, Posts_TimeLikeView } from '@app/components/interactive';
 import { TDDetailText, TDDetailLegend, TDDetailListView } from '@app/components/tdcommon';
 import moment from 'moment';
 
-const DBSBusiness_DetailScreen = (props) => {
+const DBSEnterprise_DetailScreen = (props) => {
   const navigation = useNavigation();
   const dataService = useSelector((state) => state.global.dataService);
   const user = useSelector((state) => state.global.user);
@@ -36,7 +36,7 @@ const DBSBusiness_DetailScreen = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       //console.log(dataRoute.id)
-      setData(bussinessData);
+      setData(enterpriseData);
       setLoading(false);
     };
     fetchData();
@@ -135,7 +135,7 @@ const DBSBusiness_DetailScreen = (props) => {
                       <TDDetailText title="Năm thành lập" content={data?.MOIT_NamThanhLap ?? ''} />
                     </TDDetailLegend>
                     <TouchableOpacity onPress={() => { setShowAll(!showAll) }}><Text>{showAll ? "Đóng tất cả" : "Mở tất cả"}</Text></TouchableOpacity>
-                    <Comment_StartView type="business" dataId={1}></Comment_StartView>
+                    <Comment_StartView type="enterprise" dataId={1}></Comment_StartView>
                   </View>
                 </View>
               </ScrollView>
@@ -149,7 +149,7 @@ const DBSBusiness_DetailScreen = (props) => {
   );
 };
 
-export default DBSBusiness_DetailScreen;
+export default DBSEnterprise_DetailScreen;
 const styles = StyleSheet.create({
   newsTitle: { paddingTop: 10, paddingBottom: 10, fontSize: 16, fontWeight: 'bold' },
   itemImage: { width: '100%', height: 200, marginTop: 10, marginBottom: 2, marginRight: 10, borderRadius: 5 },

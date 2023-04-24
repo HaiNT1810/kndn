@@ -139,7 +139,7 @@ const UserProfileScreen = (props) => {
     </View>
   </>
 
-  const RenderBusinessProfile = () => <>
+  const RenderEnterpriseProfile = () => <>
     <Formik style={styles.container}
       initialValues={{
         MaSoThue: '0313881469',

@@ -24,7 +24,7 @@ const initialState = {
   error: null,
   isRemember: true,
 
-  mainScreen: "home",//home/dn/cb
+  mainScreen: "home",//home|dn|cb: loại màn hình chính
 };
 export const callTypes = {
   list: 'list',

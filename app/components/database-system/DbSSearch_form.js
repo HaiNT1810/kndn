@@ -120,7 +120,7 @@ const DbSSearch_form = () => {
     else {
       switch (type.value) {
         case 'cssx':
-          navigation.navigate("DBSBusiness_FilterScreen", obj);
+          navigation.navigate("DBSEnterprise_FilterScreen", obj);
           break;
         case 'spcn':
           navigation.navigate("DBSProduct_FilterScreen", obj);

@@ -28,7 +28,7 @@ import moment from 'moment';
 const { height, width } = Dimensions.get('window');
 import * as actions from '@redux/global/Actions';
 
-const Bussiness_EditScreen = (props) => {
+const Enterprise_EditScreen = (props) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const dataService = useSelector((state) => state.global.dataService);
@@ -163,7 +163,7 @@ const Bussiness_EditScreen = (props) => {
   );
 };
 
-export default Bussiness_EditScreen;
+export default Enterprise_EditScreen;
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: 5, paddingVertical: 10 },
   avatar: { borderWidth: 1, borderColor: Colors.grey },

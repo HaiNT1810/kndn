@@ -43,7 +43,7 @@ const data = [
     count: 12
   },
 ]
-const DbSBusiness_List = () => {
+const DbSEnterprise_List = () => {
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false);
   const [state, setState] = useState({ data, })
@@ -151,7 +151,7 @@ const DbSBusiness_List = () => {
                 data.map((item, index) => {
                   return (
                     <Animated.View key={"dbs" + index} animation={''} style={[styles.buttonView, index % 2 != 0 ? { left: child_easeAnim } : { right: child_easeAnim }]}>
-                      <TouchableOpacity onPress={() => { navigation.navigate('DBSBusiness_FilterScreen', { data: item }) }}>
+                      <TouchableOpacity onPress={() => { navigation.navigate('DBSEnterprise_FilterScreen', { data: item }) }}>
                         <View style={{ position: 'relative' }}>
                           <Image source={item.image} style={styles.image} />
                           <View style={styles.containerTitle}>
@@ -174,7 +174,7 @@ const DbSBusiness_List = () => {
   );
 };
 
-export default DbSBusiness_List;
+export default DbSEnterprise_List;
 
 const styles = StyleSheet.create({
   container: {},

@@ -70,7 +70,7 @@ let _data = [
   },
 ]
 
-const DBSBusiness_FilterScreen = (props) => {
+const DBSEnterprise_FilterScreen = (props) => {
   const navigation = useNavigation();
   const dataService = useSelector((state) => state.global.dataService);
   const user = useSelector((state) => state.global.user);
@@ -220,7 +220,7 @@ const RenderItem = (props) => {
     <Animated.View animation={''} style={{ left: state }}>
       <View style={styles.item}>
         <Text style={styles.badge}>{numberOrder}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("DBSBusiness_DetailScreen", { id: item.ID })}>
+        <TouchableOpacity onPress={() => navigation.navigate("DBSEnterprise_DetailScreen", { id: item.ID })}>
           <Flex>
             <Flex.Item><Image
               resizeMode={'contain'}
@@ -264,7 +264,7 @@ const Picker = (props) => {
   )
 }
 
-export default DBSBusiness_FilterScreen;
+export default DBSEnterprise_FilterScreen;
 const styles = StyleSheet.create({
   item: { width: '100%', borderBottomWidth: 0.5, borderBottomColor: Colors.lightGray, paddingVertical: 10 },
   itemImage: { width: '95%', height: 50, marginBottom: 2, marginRight: 10, borderRadius: 5 },

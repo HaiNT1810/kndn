@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 import { View, ActivityIndicator } from 'react-native';
-import { UserProfileScreen, LoginHistoryScreen, UserProfile_EditScreen, Bussiness_EditScreen, Bussiness_ViewScreen } from '@screens/profile'
+import { UserProfileScreen, LoginHistoryScreen, UserProfile_EditScreen, Enterprise_EditScreen, Enterprise_ViewScreen } from '@screens/profile'
 import { DNEditInfo } from '@app/screens/dn'
 
 import AppDrawer from './AppDrawer';

@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Divider } from 'react-native-elements';
 import messaging from '@react-native-firebase/messaging';
 
-import { CBHomeScreen, DNInfo } from '@app/screens/cb';
+import { CBHomeScreen, Enterprise_List } from '@app/screens/cb';
 import { ChangePassScreen } from '@app/screens/home';
 
 import { DrawerMenuHeader, DrawerMenuItem, DrawerMenuChildrenItem } from '@app/components/tdcommon';
@@ -36,6 +36,8 @@ const Drawer_ = () => {
       drawerContent={(props) => <SideBar {...props} />}
       useLegacyImplementation={true}>
       <Drawer.Screen name="CBHomeScreen" component={CBHomeScreen} />
+      <Drawer.Screen name="Enterprise_List" component={Enterprise_List} />
+      <Drawer.Screen name="ChangePassScreen" component={ChangePassScreen} />
     </Drawer.Navigator>
   );
 };
@@ -96,7 +98,7 @@ const SideBar = (props) => {
       <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
         <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
           <DrawerMenuItem
-            itemKey={'DN'}
+            itemKey={'CB'}
             selectKey={selectKey}
             setSelectKey={setSelectKey}
             navigate={'CBHomeScreen'}
@@ -119,31 +121,294 @@ const SideBar = (props) => {
               dispatch(actions.setMainScreen("home"));
             }}
           />
+          <Divider width={0.5} color="#E0E0E0" />
+          <DrawerMenuItem
+            itemKey={'QLDN'}
+            selectKey={selectKey}
+            setSelectKey={setSelectKey}
+            navigate={'Enterprise_List'}
+            item={{}}
+            icon={'building'}
+            title={'Doanh nghiệp ngành Công Nghiệp'}
+            {...props}
+          />
+          <Divider width={0.5} color="#E0E0E0" />
+          <List.Accordion
+            title={
+              <DrawerMenuItem
+                itemKey={'QL'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={null}
+                item={{}}
+                icon={'info-circle'}
+                title={'QL thông tin ngành Công Nghiệp'}
+                {...props}
+              />
+            }
+            titleStyle={{ margin: -5 }}
+            style={{ padding: 0, marginLeft: -2, backgroundColor: '#fff' }}>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+1'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Cụm công nghiệp'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+2'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Khu công nghiệp'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+3'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Làng nghề công nghiệp'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+4'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Hội, câu lạc bộ'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+5'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Hợp tác xã'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+6'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Thủ tục hành chính'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+7'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Giấy xác nhận ưu đãi dự án sản xuất sản phẩm công nghiệp hỗ trợ'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+8'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Giấy chứng nhận sản phẩm công nghiệp nông thôn tiêu biểu'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+9'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Phong tặng Nghệ nhân'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'QL+10'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Giấy phép sản xuất rượu công nghiệp'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+          </List.Accordion>
+
+          <Divider width={0.5} color="#E0E0E0" />
+          <List.Accordion
+            title={
+              <DrawerMenuItem
+                itemKey={'NN'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={null}
+                item={{}}
+                icon={'info-square'}
+                title={'Ngành nghề ngành Công Nghiệp'}
+                {...props}
+              />
+            }
+            titleStyle={{ margin: -5 }}
+            style={{ padding: 0, marginLeft: -2, backgroundColor: '#fff' }}>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'NN+1'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Cơ khí, luyện kim'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'NN+2'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Công nghiệp tiêu dùng'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'NN+3'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Công nghiệp thực phẩm'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'NN+4'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Công nghiệp chủ lực'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'NN+5'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Công nghiệp hỗ trợ'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+            <Divider width={0.5} color="#E0E0E0" />
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                itemKey={'NN+6'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={'HomeScreen'}
+                item={{}}
+                subTitle={'Công nghiệp chế biến'}
+                {...props}
+                showCount={false}
+              />
+            </View>
+          </List.Accordion>
           <Divider width={1} color="#E0E0E0" />
-          {
-            accessToken ? (
-              <>
-                <DrawerMenuItem
-                  itemKey={'E'}
-                  selectKey={selectKey}
-                  setSelectKey={setSelectKey}
-                  navigate={'ChangePassScreen'}
-                  item={{}}
-                  icon={'lock-alt'}
-                  title={'Đổi mật khẩu'}
-                  {...props}
-                />
-                <Divider width={0.5} color="#E0E0E0" />
-                <DrawerMenuItem
-                  itemKey={'F'}
-                  selectKey={selectKey}
-                  setSelectKey={setSelectKey}
-                  icon={'sign-out-alt'}
-                  title={'Đăng xuất'}
-                  onPress={alertLogout}
-                />
-              </>) : <></>
-          }
+          <DrawerMenuItem
+            itemKey={'E'}
+            selectKey={selectKey}
+            setSelectKey={setSelectKey}
+            navigate={'ChangePassScreen'}
+            item={{}}
+            icon={'lock-alt'}
+            title={'Đổi mật khẩu'}
+            {...props}
+          />
+          <Divider width={0.5} color="#E0E0E0" />
+          <DrawerMenuItem
+            itemKey={'F'}
+            selectKey={selectKey}
+            setSelectKey={setSelectKey}
+            icon={'sign-out-alt'}
+            title={'Đăng xuất'}
+            onPress={alertLogout}
+          />
         </View>
       </ScrollView>
     </>
