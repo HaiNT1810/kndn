@@ -7,8 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Divider } from 'react-native-elements';
 import messaging from '@react-native-firebase/messaging';
 
-import { HomeScreen, CaNhan_MainScreen, ChangePassScreen } from '../screens/home';
-import { ThongBao_MainScreen } from '../screens/thongbao';
+import { HomeScreen, ChangePassScreen } from '../screens/home';
 import { MapScreen } from '../screens/map';
 import { DBSBusiness_FilterScreen } from '../screens/dbs';
 
@@ -40,7 +39,6 @@ const Drawer_ = () => {
       <Drawer.Screen name="HomeScreen" component={HomeScreen} />
       <Drawer.Screen name="MapScreen" component={MapScreen} />
       <Drawer.Screen name="DBSBusiness_FilterScreen" component={DBSBusiness_FilterScreen} />
-      <Drawer.Screen name="CaNhan_MainScreen" component={CaNhan_MainScreen} />
       <Drawer.Screen name="ChangePassScreen" component={ChangePassScreen} />
       {/* <Drawer.Screen name="ThongBao_MainScreen" component={ThongBao_MainScreen} /> */}
     </Drawer.Navigator>
@@ -240,7 +238,197 @@ const SideBar = (props) => {
   return (
     <>
       <DrawerMenuHeader />
-      <RenderMenu />
+      <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+        <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
+          <DrawerMenuItem
+            itemKey={'A'}
+            selectKey={selectKey}
+            setSelectKey={setSelectKey}
+            navigate={'HomeScreen'}
+            item={{}}
+            icon={'home'}
+            title={'Trang chủ'}
+            {...props}
+          />
+          {AccessToken ?//TODO: Kiểm tra thêm nếu là quyền doanh nghiệp
+            (
+              <>
+                <Divider width={1} color="#E0E0E0" />
+                <DrawerMenuItem
+                  itemKey={'DN'}
+                  selectKey={selectKey}
+                  setSelectKey={setSelectKey}
+                  navigate={'DNHomeScreen'}
+                  item={{}}
+                  icon={'arrow-alt-right'}
+                  title={'Chuyển ứng dụng doanh nghiệp'}
+                  {...props}
+                  onPress={() => {
+                    dispatch(actions.setMainScreen("dn"));
+                  }}
+                />
+              </>
+            ) : <></>
+          }
+          {AccessToken ?//TODO: Kiểm tra thêm nếu là quyền cán bộ/lãnh đạo
+            (
+              <>
+                <Divider width={1} color="#E0E0E0" />
+                <DrawerMenuItem
+                  itemKey={'QL'}
+                  selectKey={selectKey}
+                  setSelectKey={setSelectKey}
+                  navigate={'QLHomeScreen'}
+                  item={{}}
+                  icon={'arrow-alt-right'}
+                  title={'Chuyển ứng dụng quản lý'}
+                  {...props}
+                  onPress={() => {
+                    dispatch(actions.setMainScreen("cb"));
+                  }}
+                />
+              </>
+            ) : <></>
+          }
+          <Divider width={1} color="#E0E0E0" />
+          <List.Accordion
+            title={
+              <DrawerMenuItem
+                itemKey={'B'}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+                navigate={null}
+                item={{}}
+                icon={'searchengin'}
+                title={'Tìm kiếm thông tin'}
+                {...props}
+              />
+            }
+            titleStyle={{ margin: -5 }}
+            style={{ padding: 0, marginLeft: -2, backgroundColor: '#fff' }}>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                key={`B+1`}
+                itemKey={`B+1`}
+                navigate={'DBSBusiness_FilterScreen'}
+                item={{}}
+                title={'Tìm kiếm thông tin'}
+                subTitle={'Cơ sở sản xuất, kinh doanh sản phẩm công nghiệp'}
+                {...props}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+              />
+            </View>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                key={`B+2`}
+                itemKey={`B+2`}
+                navigate={null}
+                item={{}}
+                title={'Tìm kiếm thông tin'}
+                subTitle={'Sản phẩm công nghiệp'}
+                {...props}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+              />
+            </View>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                key={`B+3`}
+                itemKey={`B+3`}
+                navigate={null}
+                item={{}}
+                title={'Tìm kiếm thông tin'}
+                subTitle={'Khu công nghiệp'}
+                {...props}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+              />
+            </View>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                key={`B+4`}
+                itemKey={`B+4`}
+                navigate={null}
+                item={{}}
+                title={'Tìm kiếm thông tin'}
+                subTitle={'Cụm công nghiệp'}
+                {...props}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+              />
+            </View>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                key={`B+5`}
+                itemKey={`B+5`}
+                navigate={null}
+                item={{}}
+                title={'Tìm kiếm thông tin'}
+                subTitle={'Làng nghề công nghiệp'}
+                {...props}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+              />
+            </View>
+            <View>
+              <View style={{ borderWidth: 0.5, borderStyle: 'dashed', borderColor: '#E0E0E0' }} />
+              <DrawerMenuChildrenItem
+                key={`B+6`}
+                itemKey={`B+6`}
+                navigate={null}
+                item={{}}
+                title={'Tìm kiếm thông tin'}
+                subTitle={'Địa điểm kinh doanh'}
+                {...props}
+                selectKey={selectKey}
+                setSelectKey={setSelectKey}
+              />
+            </View>
+          </List.Accordion>
+          <Divider width={1} color="#E0E0E0" />
+          <DrawerMenuItem
+            itemKey={'G'}
+            selectKey={selectKey}
+            setSelectKey={setSelectKey}
+            navigate={'MapScreen'}
+            item={{}}
+            icon={'map'}
+            title={'Bản đồ'}
+            {...props}
+          />
+          <Divider width={1} color="#E0E0E0" />
+          {
+            AccessToken ? (
+              <>
+                <DrawerMenuItem
+                  itemKey={'E'}
+                  selectKey={selectKey}
+                  setSelectKey={setSelectKey}
+                  navigate={'ChangePassScreen'}
+                  item={{}}
+                  icon={'lock-alt'}
+                  title={'Đổi mật khẩu'}
+                  {...props}
+                />
+                <Divider width={1} color="#E0E0E0" />
+                <DrawerMenuItem
+                  itemKey={'F'}
+                  selectKey={selectKey}
+                  setSelectKey={setSelectKey}
+                  icon={'sign-out-alt'}
+                  title={'Đăng xuất'}
+                  onPress={alertLogout}
+                />
+              </>) : <></>
+          }
+        </View>
+      </ScrollView>
     </>
   );
 };

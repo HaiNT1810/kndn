@@ -7,7 +7,7 @@ const TDDetailListView = (props) => {
   const {
     hasHeader,//Có mở đầu, không cần title ở các ô dưới; nếu ko có thì các ô dưới có chú giải
     titles,//Tiêu đề (số nhiều): [{ field: "f1", text: "Tên khách hàng" },...]
-    // content,//Nội dung
+    content,//Nội dung
     // isCurrency,//Có phải là tiền tệ, để format lại
   } = props;
 

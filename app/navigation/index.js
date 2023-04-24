@@ -14,6 +14,8 @@ const Stack = createStackNavigator();
 
 import * as actions from '../redux/global/Actions';
 import AppStack from './AppStack';
+import DNStack from './dn/AppStack';
+import CBStack from './cb/AppStack';
 //import AuthStack from './AuthStack';
 import { IntroScreen } from '../screens/intro';
 const RootContainerScreen = () => {
@@ -24,6 +26,7 @@ const RootContainerScreen = () => {
   const accessToken = useSelector((state) => state.global.accessToken);
   let username = useSelector((state) => state.global.username_tmp);
   const dataApp = useSelector((state) => state.global.dataApp);
+  const mainScreen = useSelector((state) => state.global.mainScreen);
 
 
 
@@ -110,15 +113,29 @@ const RootContainerScreen = () => {
                 animationEnabled: false,
               }}
             />
-          ) : (
-            <Stack.Screen
-              name="AppStack"
-              component={AppStack}
+          ) :
+            mainScreen && mainScreen == "dn" && AccessToken ? (<Stack.Screen
+              name="DNStack"
+              component={DNStack}
               options={{
                 animationEnabled: false,
               }}
-            />
-          )}
+            />) : mainScreen && mainScreen == "cb" && AccessToken ? (<Stack.Screen
+              name="CBStack"
+              component={CBStack}
+              options={{
+                animationEnabled: false,
+              }}
+            />) : (
+              <Stack.Screen
+                name="AppStack"
+                component={AppStack}
+                options={{
+                  animationEnabled: false,
+                }}
+              />
+            )
+          }
         </Stack.Navigator>
       </Host>
     </NavigationContainer>

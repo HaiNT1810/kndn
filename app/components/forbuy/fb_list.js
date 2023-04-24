@@ -13,7 +13,7 @@ import { BASE_URL, fullOrderData } from '@app/data';
 
 let tmrSearch;
 const FB_List = (props) => {
-  const { showSearchBox, showMoreBox } = props;
+  const { showSearchBox, showMoreBox, setShowSearchBox, setShowMoreBox } = props;
   const _data = [{
     image: require('@images/products/mechanical-engineering.jpg'),
     title: "Thành Long tìm kiếm đối tác kết nối sản phẩm CNHT - Lò xo",
@@ -173,6 +173,10 @@ const FB_List = (props) => {
             )}
             onEndReached={() => {
               getLoadMore()
+            }}
+            onScroll={() => { 
+              setShowSearchBox(false);
+              setShowMoreBox(false);
             }}
             onEndReachedThreshold={0.5}
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

@@ -281,8 +281,32 @@ const UserProfileScreen = (props) => {
         <View style={{ flex: 1 }}>
           {data ? (
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} style={{ backgroundColor: '#fff' }}>
-              {roleCodes == "ThanhVien" && <RenderUserProfile />}
-              {roleCodes == "DoanhNghiep" && <RenderBusinessProfile />}
+              <View style={styles.container}>
+                <View style={[styles.flexInline, { paddingLeft: 10 }]}>
+                  <FontAwesome name={'address-book'} solid color={iconColor} style={{ paddingStart: 0, width: 24 }} size={18} />
+                  <Text style={styles.headText}>Thông tin cá nhân</Text>
+                  <TouchableOpacity onPress={() => { navigation.navigate("UserProfile_EditScreen") }} style={[styles.icon, styles._iconRounded]}><FontAwesome name='pencil' size={16} /></TouchableOpacity>
+                </View>
+                <View>
+                  <Flex>
+                    <Flex.Item>
+                      <View style={{ alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => { }}>
+                          <Avatar size="large" rounded source={Images.logos._logo} />
+                        </TouchableOpacity>
+                      </View>
+                    </Flex.Item>
+                    <Flex.Item flex={2}>
+                      <View>
+                        <Text>Admin</Text>
+                        <Text>abc@gmail.com</Text>
+                        <Text>0132654987</Text>
+                      </View>
+                    </Flex.Item>
+                  </Flex>
+                </View>
+              </View>
+              <Divider width={0.5} color="#E0E0E0" />
               <TouchableOpacity onPress={() => { }} style={[styles.container, styles.flexInline, { paddingLeft: 15 }]}>
                 <FontAwesome name={'wrench'} solid color={iconColor} style={{ paddingStart: 0, width: 24 }} size={18} />
                 <Text style={{ color: Colors.darkGray }}>Cài đặt</Text>
