@@ -124,20 +124,6 @@ const UserProfileScreen = (props) => {
                 </View>
               </View>
               <Divider width={0.5} color="#E0E0E0" />
-              <View style={styles.container}>
-                <View style={[styles.flexInline, { paddingLeft: 10 }]}>
-                  <FontAwesome name={'info-square'} solid color={iconColor} style={{ paddingStart: 0, width: 24 }} size={18} />
-                  <Text style={styles.headText}>Thông tin doanh nghiệp</Text>
-                  <TouchableOpacity onPress={() => { }} style={[styles.icon, styles._iconRounded]}><FontAwesome name='pencil' size={16} /></TouchableOpacity>
-                </View>
-                <View style={{ paddingHorizontal: 10 }}>
-                  <RenderItem title="Tên công ty" content="Công ty cổ phần Tin học Tân Dân"></RenderItem>
-                  <RenderItem title="Mã số thuế" content="0132546579"></RenderItem>
-                  <RenderItem title="Địa chỉ" content="Số 60, ngõ Thịnh Hào 1, phường Hàng Bột, quận Đống Đa, Hà Nội, Việt Nam"></RenderItem>
-                  <RenderItem title="..." content=""></RenderItem>
-                </View>
-              </View>
-              <Divider width={0.5} color="#E0E0E0" />
               <TouchableOpacity onPress={() => { }} style={[styles.container, styles.flexInline, { paddingLeft: 15 }]}>
                 <FontAwesome name={'wrench'} solid color={iconColor} style={{ paddingStart: 0, width: 24 }} size={18} />
                 <Text style={{ color: Colors.darkGray }}>Cài đặt</Text>

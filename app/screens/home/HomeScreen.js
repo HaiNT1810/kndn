@@ -99,7 +99,7 @@ const Main_Screen = (props) => {
               title={pageText}
               RightComponent={() => (<TD_HeaderRight_Icon showSearch={true} showDots={true} funcSearch={funcSearch} funcMore={funcMore} />)}
             />
-            <FB_List showSearchBox={showSearchBox} showMoreBox={showMoreBox}></FB_List>
+            <FB_List showSearchBox={showSearchBox} showMoreBox={showMoreBox} setShowSearchBox={setShowSearchBox} setShowMoreBox={setShowMoreBox}></FB_List>
           </View >
         )
       case "forsaleTab":
@@ -110,7 +110,7 @@ const Main_Screen = (props) => {
               title={pageText}
               RightComponent={() => (<TD_HeaderRight_Icon showSearch={true} showDots={true} funcSearch={funcSearch} funcMore={funcMore} />)}
             />
-            <FS_List showSearchBox={showSearchBox} showMoreBox={showMoreBox}></FS_List>
+            <FS_List showSearchBox={showSearchBox} showMoreBox={showMoreBox} setShowSearchBox={setShowSearchBox} setShowMoreBox={setShowMoreBox}></FS_List>
           </View >
         )
       case "dbsSearchTab":

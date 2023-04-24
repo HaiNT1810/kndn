@@ -7,8 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Divider } from 'react-native-elements';
 import messaging from '@react-native-firebase/messaging';
 
-import { HomeScreen, CaNhan_MainScreen, ChangePassScreen } from '../screens/home';
-import { ThongBao_MainScreen } from '../screens/thongbao';
+import { HomeScreen, ChangePassScreen } from '../screens/home';
 import { MapScreen } from '../screens/map';
 import { DBSBusiness_FilterScreen } from '../screens/dbs';
 
@@ -40,7 +39,6 @@ const Drawer_ = () => {
       <Drawer.Screen name="HomeScreen" component={HomeScreen} />
       <Drawer.Screen name="MapScreen" component={MapScreen} />
       <Drawer.Screen name="DBSBusiness_FilterScreen" component={DBSBusiness_FilterScreen} />
-      <Drawer.Screen name="CaNhan_MainScreen" component={CaNhan_MainScreen} />
       <Drawer.Screen name="ChangePassScreen" component={ChangePassScreen} />
       {/* <Drawer.Screen name="ThongBao_MainScreen" component={ThongBao_MainScreen} /> */}
     </Drawer.Navigator>
@@ -112,6 +110,46 @@ const SideBar = (props) => {
             title={'Trang chủ'}
             {...props}
           />
+          {AccessToken ?//TODO: Kiểm tra thêm nếu là quyền doanh nghiệp
+            (
+              <>
+                <Divider width={1} color="#E0E0E0" />
+                <DrawerMenuItem
+                  itemKey={'DN'}
+                  selectKey={selectKey}
+                  setSelectKey={setSelectKey}
+                  navigate={'DNHomeScreen'}
+                  item={{}}
+                  icon={'arrow-alt-right'}
+                  title={'Chuyển ứng dụng doanh nghiệp'}
+                  {...props}
+                  onPress={() => {
+                    dispatch(actions.setMainScreen("dn"));
+                  }}
+                />
+              </>
+            ) : <></>
+          }
+          {AccessToken ?//TODO: Kiểm tra thêm nếu là quyền cán bộ/lãnh đạo
+            (
+              <>
+                <Divider width={1} color="#E0E0E0" />
+                <DrawerMenuItem
+                  itemKey={'QL'}
+                  selectKey={selectKey}
+                  setSelectKey={setSelectKey}
+                  navigate={'QLHomeScreen'}
+                  item={{}}
+                  icon={'arrow-alt-right'}
+                  title={'Chuyển ứng dụng quản lý'}
+                  {...props}
+                  onPress={() => {
+                    dispatch(actions.setMainScreen("cb"));
+                  }}
+                />
+              </>
+            ) : <></>
+          }
           <Divider width={1} color="#E0E0E0" />
           <List.Accordion
             title={

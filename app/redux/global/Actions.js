@@ -72,3 +72,6 @@ export const setFilter = (isRefresh) => (dispatch) => {
 export const setRemember = (isRemember) => (dispatch) => {
   return dispatch(actions.setRemember(isRemember));
 };
+export const setMainScreen = (key) => (dispatch) => {
+  return dispatch(actions.setMainScreen(key));
+};

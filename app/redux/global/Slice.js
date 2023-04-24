@@ -22,7 +22,9 @@ const initialState = {
   customerForEdit: undefined,
   lastError: null,
   error: null,
-  isRemember: true
+  isRemember: true,
+
+  mainScreen: "home",//home/dn/cb
 };
 export const callTypes = {
   list: 'list',
@@ -98,6 +100,9 @@ export const globalSlice = createSlice({
       state.AccessToken = payload.token;
       state.username_tmp = payload.username;
       state.password_tmp = payload.password;
+    },
+    setMainScreen: (state, action) => {
+      state.mainScreen = action.payload;
     },
   },
 });

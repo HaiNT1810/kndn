@@ -4,7 +4,7 @@ import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5Pro';
 
 const TD_MenuItem = (props) => {
-  const { navigation, navigate, icon, title, subTitle, item, itemKey, selectKey, setSelectKey } = props;
+  const { navigation, navigate, icon, title, subTitle, item, itemKey, selectKey, setSelectKey, showCount = true } = props;
 
   return (
     <TouchableOpacity
@@ -44,13 +44,16 @@ const TD_MenuItem = (props) => {
             paddingStart: 10,
           }}>
           {subTitle ? subTitle : ''}
-          <Text
-            style={{
-              color: '#F44336',
-              fontWeight: '600',
-            }}>
-            {` (${item.count ?? 0})`}
-          </Text>
+          {showCount ?
+            <Text
+              style={{
+                color: '#F44336',
+                fontWeight: '600',
+              }}>
+              {` (${item.count ?? 0})`}
+            </Text>
+            : <></>
+          }
         </Text>
       </View>
     </TouchableOpacity>
