@@ -106,6 +106,11 @@ const DNEditInfo = (props) => {
     return () => { };
   }, [refreshing]);
 
+  const changeAvatar = async () => {
+    const option = { mediaType: 'photo', selectionLimit: 1 };
+    //const result = await launchImageLibrary(option);
+  }
+
   const changeObjectValue = (item, name, value, isNumber = false) => {
     let obj = {};
     if (isNumber)
@@ -143,7 +148,9 @@ const DNEditInfo = (props) => {
                     source={{
                       uri: 'http://data.csdl.gov.vn/' + values?.MOIT_Logo,
                     }}
-                  />
+                  >
+                    <Avatar.Accessory size={32} onPress={changeAvatar} />
+                  </Avatar>
                 </View>
                 <TDTextInputNew isImportant multiline value={values?.MOIT_TenCongTy_VN} onChangeText={handleChange("MOIT_TenCongTy_VN")} placeholder={'Tên công ty'} title={'Tên công ty'} />
                 <TDTextInputNew isImportant multiline value={values?.Title} onChangeText={handleChange("Title")} placeholder={'Mã số thuế'} title={'Mã số thuế'} />

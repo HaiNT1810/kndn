@@ -140,11 +140,13 @@ const Enterprise_Info_Edit = (props) => {
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
                   <Avatar
                     size="xlarge"
-                    showEditButton
+                    showAccessory
                     source={{
                       uri: 'http://data.csdl.gov.vn/' + values?.MOIT_Logo,
                     }}
-                  />
+                  >
+                    <Avatar.Accessory {...accessoryProps} />
+                  </Avatar>
                 </View>
                 <TDTextInputNew isImportant multiline value={values?.MOIT_TenCongTy_VN} onChangeText={handleChange("MOIT_TenCongTy_VN")} placeholder={'Tên công ty'} title={'Tên công ty'} />
                 <TDTextInputNew isImportant multiline value={values?.Title} onChangeText={handleChange("Title")} placeholder={'Mã số thuế'} title={'Mã số thuế'} />
