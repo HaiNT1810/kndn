@@ -12,18 +12,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Colors } from '@app/themes';
 import { TD_Header } from '@app/components';
-import { Card, Flex, List, WingBlank } from '@ant-design/react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5Pro';
 import { ScrollView } from 'react-native';
 import { Image } from 'react-native';
-import { Comment_StartView, Posts_TimeLikeView } from '@app/components/interactive';
 import { TDDetailLegend, TDDetailText } from '@app/components/tdcommon';
 import { BASE_URL, enterpriseData } from '@app/data';
 import moment from 'moment';
 import TDDetailListView from '@app/components/tdcommon/TDDetailListView';
 import ActionButton from 'react-native-action-button';
 
-const DNInfo = (props) => {
+const Enterprise_Info = (props) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const dataService = useSelector((state) => state.global.dataService);
@@ -93,7 +91,7 @@ const DNInfo = (props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.TD_Background }}>
-      <TD_Header checkrightComponent {...props} title="Thông tin cơ sở" />
+      <TD_Header checkrightComponent {...props} title="Thông tin doanh nghiệp" />
       {refreshing ? (
         <ActivityIndicator size="large" color="#fb8c00" style={{ flex: 1, justifyContent: 'center' }} />
       ) : (
@@ -112,7 +110,6 @@ const DNInfo = (props) => {
                       />
                     </View>
                     <Text style={styles.newsTitle}>{data.MOIT_TenCongTy_VN}</Text>
-                    <Posts_TimeLikeView like={100} view={data.MOIT_LuotXem} comment={20}></Posts_TimeLikeView>
                     <TDDetailText title="Mã số thuế" content={data?.Title ?? ''} />
                     <TDDetailText title="Cập nhập lần cuối" content={data?.MOIT_NgayCapNhat ? moment(data?.MOIT_NgayCapNhat).format("DD/MM/yyyy") : ""} />
                     <TDDetailText title="Trạng thái tài khoản" content={data?.MOIT_TrangThai == 2 ? 'Đang hoạt động' : ''} />
@@ -194,7 +191,6 @@ const DNInfo = (props) => {
                       </TDDetailLegend>
                     </> : <></>}
                     <TouchableOpacity onPress={() => { setShowAll(!showAll) }}><Text>{showAll ? "Đóng tất cả" : "Mở tất cả"}</Text></TouchableOpacity>
-                    <Comment_StartView type="enterprise" dataId={1}></Comment_StartView>
                   </View>
                 </View>
               </ScrollView>
@@ -204,21 +200,17 @@ const DNInfo = (props) => {
                 renderIcon={() => { return <FontAwesome name={'edit'} color={Colors.white} size={20} /> }}
                 size={50}
               /> :
-                <>
-                  <ActionButton
-                    buttonColor={Colors.blueHope}
-                    onPress={() => { navigation.navigate("DNEditInfo", { id: data.ID, checkEdit: checkEdit }); }}
-                    renderIcon={() => { return <FontAwesome name={'pen'} color={Colors.white} size={20} /> }}
-                    size={50} position={"center"}
-                  />
-                  <ActionButton
+                <><ActionButton
+                  buttonColor={Colors.blueHope}
+                  onPress={() => { navigation.navigate("Enterprise_Info_Edit", { id: data.ID, checkEdit: checkEdit }) }}
+                  renderIcon={() => { return <FontAwesome name={'pen'} color={Colors.white} size={20} /> }}
+                  size={50} position={"center"}
+                /><ActionButton
                     buttonColor={Colors.red}
                     onPress={() => { setEdit(false); setCheckAll(false); }}
                     renderIcon={() => { return <FontAwesome name={'times'} color={Colors.white} size={20} /> }}
                     size={50}
-                  />
-                </>
-              }
+                  /></>}
             </>
           ) : (
             <Text>Không tìm thấy!!!</Text>
@@ -229,7 +221,7 @@ const DNInfo = (props) => {
   );
 };
 
-export default DNInfo;
+export default Enterprise_Info;
 const styles = StyleSheet.create({
   newsTitle: { paddingTop: 10, fontSize: 18, fontWeight: 'bold' },
   itemImage: { width: '100%', height: 200, marginTop: 10, marginBottom: 2, marginRight: 10, borderRadius: 5 },
