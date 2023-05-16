@@ -10,6 +10,7 @@ import messaging from '@react-native-firebase/messaging';
 import { HomeScreen, ChangePassScreen } from '../screens/home';
 import { MapScreen } from '../screens/map';
 import { DBSEnterprise_FilterScreen } from '../screens/dbs';
+import { Topic_HomeScreen } from '@app/screens/topic';
 
 import { DrawerMenuHeader, DrawerMenuItem, DrawerMenuChildrenItem } from '../components/tdcommon';
 import { Styles } from '@themes';
@@ -40,6 +41,7 @@ const Drawer_ = () => {
       <Drawer.Screen name="MapScreen" component={MapScreen} />
       <Drawer.Screen name="DBSEnterprise_FilterScreen" component={DBSEnterprise_FilterScreen} />
       <Drawer.Screen name="ChangePassScreen" component={ChangePassScreen} />
+      <Drawer.Screen name="TopicScreen" component={Topic_HomeScreen} />
       {/* <Drawer.Screen name="ThongBao_MainScreen" component={ThongBao_MainScreen} /> */}
     </Drawer.Navigator>
   );
@@ -391,6 +393,17 @@ const SideBar = (props) => {
               />
             </View>
           </List.Accordion>
+          <Divider width={1} color="#E0E0E0" />
+          <DrawerMenuItem
+            itemKey={'C'}
+            selectKey={selectKey}
+            setSelectKey={setSelectKey}
+            navigate={'TopicScreen'}
+            item={{}}
+            icon={'comments'}
+            title={'Chủ đề thảo luận'}
+            {...props}
+          />
           <Divider width={1} color="#E0E0E0" />
           <DrawerMenuItem
             itemKey={'G'}

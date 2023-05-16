@@ -13,7 +13,7 @@ yarn tdbuild
 the file apk is generated in android --> app --> build --> outputs --> apk --> release
 
 # Fix Error "Please update the following components: ActionButton"
-node_modules --> ActionButton Folder --> ActionButton.js Change componentWillReceiveProps to componentDidUpdate
+node_modules --> react-native-action-button --> ActionButton.js Change componentWillReceiveProps to componentDidUpdate
 //then run: npx react-codemod rename-unsafe-lifecycles
 
 # Fix Error "Require cycle: node_modules/rn-fetch-blob/index.js -> node_modules/rn-fetch-blob/polyfill/index.js -> node_modules/rn-fetch-blob/polyfill/Blob.js -> node_modules/rn-fetch-blob/index.js"

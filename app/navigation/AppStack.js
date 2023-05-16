@@ -16,6 +16,7 @@ import { MapScreen } from '../screens/map';
 import { LoginScreen, RegisterScreen } from '../screens/auth'
 import { UserProfileScreen, LoginHistoryScreen, UserProfile_EditScreen, Enterprise_EditScreen, Enterprise_ViewScreen } from '../screens/profile'
 import { DBSEnterprise_FilterScreen, DBSEnterprise_DetailScreen, DBSProduct_FilterScreen, DBSProduct_DetailScreen } from '../screens/dbs';
+import { Topic_ListScreen } from '@app/screens/topic';
 import * as actions from '../redux/global/Actions';
 
 const AppStack = () => {
@@ -84,7 +85,8 @@ const AppStack = () => {
       <Stack.Screen name="DBSEnterprise_DetailScreen" component={DBSEnterprise_DetailScreen} />
       <Stack.Screen name="DBSProduct_FilterScreen" component={DBSProduct_FilterScreen} />
       <Stack.Screen name="DBSProduct_DetailScreen" component={DBSProduct_DetailScreen} />
-      {/*  */}
+      {/* Topic*/}
+      <Stack.Screen name="Topic_ListScreen" component={Topic_ListScreen} />
     </Stack.Navigator>
   );
 };
